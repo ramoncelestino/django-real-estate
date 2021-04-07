@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Imóvel</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+</head>
+<body>
+{% include 'navbar.html' %}
+    <div class="container sm-w-25 my-5">
+        <div class="cont-one">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="text-secondary" for="nome">Nome</label>
+                    {{form.nome}}
+                </div>
+                <div class="form-group">
+                    <label class="text-secondary" for="nome">Descricao</label>
+                    {{form.description}}
+                </div>
+                <div class="form-group d-inline-block sm-w-50 mb-3">
+                    <label class="text-secondary" for="nome">Preço</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        {{form.price}}
+                    </div>
+                </div>
+
+                <div class="form-group d-inline-block w-25">
+                    <label class="text-secondary" for="nome">Quartos</label>
+                    {{form.quartos}}
+                </div>
+                <div class="form-group d-inline-block w-25">
+                    <label class="text-secondary" for="nome">Banheiros</label>
+                    {{form.banheiros}}
+                </div>
+                <div class="form-group">
+                    <label class="text-secondary" for="nome">Rua</label>
+                    {{form.rua}}
+                </div>
+                <div class="form-group d-inline-block w-50">
+                    <label class="text-secondary" for="nome">Cidade</label>
+                    {{form.cidade}}
+                </div>
+                <div class="form-group d-inline-block w-50">
+                    <label class="text-secondary" for="nome">Bairros</label>
+                    {{form.bairro}}
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary form-control" type="input">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

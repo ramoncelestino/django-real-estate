@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="team">
+    <div class="container">
+        <div class="row p-5">
+            {% for imovel in list_imoveis %}
+                <div class="col-md-3">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-image">
+
+
+                            <div id="slider{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li class="active" data-target="#slider{{ forloop.counter }}" data-slide-to="0"></li>
+                                    <li data-target="#slider{{ forloop.counter }}" data-slide-to="1"></li>
+                                    <li data-target="#slider{{ forloop.counter }}" data-slide-to="2"></li>
+                                    <li data-target="#slider{{ forloop.counter }}" data-slide-to="3"></li>
+
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <figure class="image is-4by3">
+                                            <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="100%" height="280">
+                                            <div class="card-img-overlay">
+                                                <h2>
+                                                <span class="badge badge-info text-white">R${{ imovel.price }}</span>
+                                                </h2>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <figure class="image is-4by3">
+                                            {% if imovel.photo_1 %}
+                                            <img src="{{ imovel.photo_1.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% else %}
+                                            <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% endif %}
+                                            <div class="card-img-overlay">
+                                            <h2>
+                                            <span class="badge badge-info text-white">R${{ imovel.price }}</span>
+                                            </h2>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <figure class="image is-4by3">
+                                            {% if imovel.photo_2 %}
+                                            <img src="{{ imovel.photo_2.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% else %}
+                                            <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% endif %}  <div class="card-img-overlay">
+                                                <h2>
+                                                <span class="badge badge-info text-white">R${{ imovel.price }}</span>
+                                                </h2>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <figure class="image is-4by3">
+                                            {% if imovel.photo_3 %}
+                                            <img src="{{ imovel.photo_3.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% else %}
+                                            <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="100%" height="280">
+                                            {% endif %}  <div class="card-img-overlay">
+                                                <h2>
+                                                <span class="badge badge-info text-white">R${{ imovel.price }}</span>
+                                                </h2>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+
+                                <!-- CONTROLS -->
+                                <a href="#slider{{ forloop.counter }}" class="carousel-control-prev" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+
+                                <a href="#slider{{ forloop.counter }}" class="carousel-control-next" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title pricing-card-title text-info">{{ imovel.bairro.nome}}</h4>
+                            <hr>
+                            
+                            <a class="card-link w-100 btn btn-lg btn-outline-info" href="{% url 'view_imovel' imovel.id %}">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+

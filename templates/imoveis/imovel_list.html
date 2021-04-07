@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/default.css' %}"></head>
+
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+<!--    <div class="container">-->
+<!--        <form method="get" action="/imoveis/">-->
+<!--            <div class="field has-addons">-->
+<!--                <div class="control is-expanded">-->
+<!--                    <input type="text" name="bairro" placeholder="bairro">-->
+<!--                </div>-->
+<!--                <div class="control">-->
+<!--                    <button type="submit" class="button is-info">-->
+<!--                        Pesquisar-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+        <header id="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="transparency-container">
+                        <div class="container">
+                            <form method="get" action="/imoveis/">
+                                <div class="form-group d-inline-block">
+                                    <div class="select">
+                                        <label class="labelsearch" for="preco">Faixa de Preço</label>
+                                          <select class="form-control" name="preco" id="preco">
+                                              <option value="">Selecione o Modelo</option>
+                                              {% for faixa in faixas_preco %}
+                                              <option value="{{faixa}}">Até R${{faixa}}</option>
+                                              {% endfor %}
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="form-group d-inline-block">
+                                    <div class="select">
+                                        <label class="labelsearch" for="aluga_compra">Alugar ou Comprar</label>
+                                          <select class="form-control" name="modelo" id="aluga_compra">
+                                              <option value="">Selecione o Modelo</option>
+                                              {% for modelo in modelos %}
+                                              <option value="{{modelo.nome}}">{{modelo.nome}}</option>
+                                              {% endfor %}
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="form-group d-inline-block">
+                                    <div class="select">
+                                        <label class="labelsearch" for="tipo">Tipo:</label>
+                                          <select class="form-control" name="tipo" id="tipo">
+                                              <option value="">Selecione o Tipo</option>
+                                              {% for tipo in tipos %}
+                                              <option value="{{tipo.nome}}">{{tipo.nome}}</option>
+                                              {% endfor %}
+                                          </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-inline-block">
+                                    <div class="select">
+                                        <label class="labelsearch" for="bairro">Bairro</label>
+                                          <select class="form-control" name="bairro" id="bairro">
+                                              <option value="">Selecione o Bairro</option>
+                                              {% for bairro in bairros %}
+                                              <option value="{{bairro.nome}}">{{bairro.nome}}</option>
+                                              {% endfor %}
+                                          </select>
+                                    </div>
+                                </div>
+                                <button type="submit" onclick="getBairro();" class="btn btn-info form-control">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row row-cols-2 row-cols-md-2 mb-2">
+
+            <div class="col-md">
+                <div id="center" class="container">
+                    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                        <h1 class="display-4">Leonardo Vieira Imobiliária</h1>
+                        <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-2 mb-3">
+                        {% for imovel in object_list %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                      <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="100%" height="280">
+                                        <div class="card-img-overlay">
+                                          <h2>
+                                            <span class="badge badge-info text-white">R${{ imovel.price }}</span>
+                                          </h2>
+                                        </div>
+                                    </figure>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h1 class="card-title pricing-card-title">{{ imovel.endereco.bairro.nome}}</h1>
+                                    <ul class="list-unstyled mt-3 mb-4 ">
+                                        <li class="text-info">{{ imovel.quartos }} quartos</li>
+                                        <li class="text-info">{{ imovel.banheiros }} banheiros</li>
+                                        <li class="text-info">{{ imovel.sqft }}m²</li>
+                                    </ul>
+                                    <div class="outer">
+                                        <div class="d-inline-block">
+                                            <a class="card-link w-100 btn btn-outline-info inline" href="{% url 'view_imovel' imovel.id %}">Ver Detalhes</a>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <a class="card-link w-100 btn btn-outline-success inline" href="{% url 'delete_imovel' imovel.id %}">Editar</a>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <a class="card-link w-100 btn btn-outline-danger inline" href="{% url 'update_imovel' imovel.id %}">Excluir</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        function getBairro()
+        {
+            var bairro = document.getElementById("bairro").value;
+            var tipo = document.getElementById("tipo").value;
+            var modelo = document.getElementById("aluga_compra").value;
+            var preco = document.getElementById("preco").value;
+
+
+            var price = document.getElementById("sliderid").value;
+            var SelectValue = document.getElementById("SelectValue");
+            SelectValue.innerHTML = price;
+
+        }
+
+        function updateTextInput(val){
+            document.getElementById('rangevalue').textContent = val;
+        }
+        </script>
+
+</body>
+</html>

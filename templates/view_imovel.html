@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="row  mt-5 pt-5">
+          <div class="col-md-4">
+              <img src="{{ imovel.photo_main.url }}" alt="Placeholder image" width="640px" height="350px">
+          </div>
+          <div class="col-md-4">
+            <img src="{{ imovel.photo_1.url }}" alt="Placeholder image" width="640px" height="350px">
+          </div>
+          <div class="col-md-4">
+            <img src="{{ imovel.photo_2.url }}" alt="Placeholder image" width="640px" height="350px">
+          </div>
+        </div>
+        <div class="container">
+          <div class="row mb-5 pb-5 pt-5">
+              <div id="overlay-item" class="col-md-8 mb-2">
+                <h1 class="display-4 text-center">{{imovel.nome}}</h1>
+
+              </div>
+              <div id="overlay-item" class="col-md-3 mb-2">
+                <h3 class="display-4 text-center">Contato</h1>
+                  <form method="GET">
+                    <div class="form-group mt-4">
+                      <input type="text" class="form-control" placeholder="Nome">
+
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="E-mail">
+                      
+                    </div>
+                      <textarea class="form-control" placeholder="Mensagem">
+                      
+                  </form>
+
+              </div>
+          </div>
+        </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+        <script>
+        $('.carousel').carousel({
+          interval: 3000,
+          keyboard: true,
+          pause: 'hover',
+          wrap: true
+        });
+
+        $('#slider4').on('slide.bs.carousel', function () {
+          console.log('SLIDE!');
+        });
+
+        $('#slider4').on('slid.bs.carousel', function () {
+          console.log('SLID!');
+        });
+
+        </script>
+{% endblock %}

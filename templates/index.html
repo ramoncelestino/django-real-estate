@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+        <section id="header-index">
+            <div class="container">
+                <div class="row">
+                    <div class="transparency-container">
+                        <div class="container">
+                            <h1 class="display-4 text-center">Pesquise o seu futuro imóvel</h1>
+                            <form method="get" action="/search_imoveis/">
+                                <div class="form-row">
+                                    <div class="col-md-4 col-sm-6 mb-3">
+                                        <label class="sr-only">Keywords</label>
+                                        <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 mb-3">
+                                        <div class="select">
+                                            <label class="sr-only" for="preco">Faixas de Preço</label>
+                                            <select class="form-control" name="preco" id="preco">
+                                                <option value="">Faixa de Preço</option>
+                                                {% for faixa in faixas_preco %}
+                                                <option value="{{faixa}}">Até R${{faixa}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 mb-3">
+                                        <div class="select">
+                                            <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
+                                            <select class="form-control" name="modelo" id="aluga_compra">
+                                                <option value="">Aluguel ou Compra</option>
+                                                {% for modelo in modelos %}
+                                                <option value="{{modelo.nome}}">{{modelo.nome}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-6 mb-3">
+                                        <div class="select">
+                                            <label class="sr-only" for="tipo">Tipo Imóvel</label>
+                                            <select class="form-control" name="tipo" id="tipo">
+                                                <option value="">Selecione o Tipo</option>
+                                                {% for tipo in tipos %}
+                                                <option value="{{tipo.nome}}">{{tipo.nome}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6  mb-3">
+                                        <div class="select">
+                                            <label class="sr-only" for="bairro">Selecione o Bairro</label>
+                                            <select class="form-control" name="bairro" id="bairro">
+                                                <option value="">Selecione o Bairro</option>
+                                                {% for bairro in bairros %}
+                                                <option value="{{bairro.nome}}">{{bairro.nome}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 mb-3">
+                                        <div class="select">
+                                            <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
+                                            <select class="form-control" name="modelo" id="aluga_compra">
+                                                <option value="">Selecione o Modelo</option>
+                                                {% for modelo in modelos %}
+                                                <option value="{{modelo.nome}}">{{modelo.nome}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" onclick="getBairro();" class="btn btn-info form-control">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% include 'empresa.html' %}
+
+        {% include 'lancamentos.html' %}
+
+        {% include 'apresentacao.html' %}
+
+        
+        
+        <script>
+        function getBairro()
+        {
+            var bairro = document.getElementById("bairro").value;
+            var tipo = document.getElementById("tipo").value;
+            var modelo = document.getElementById("aluga_compra").value;
+            var preco = document.getElementById("preco").value;
+
+
+            var price = document.getElementById("sliderid").value;
+            var SelectValue = document.getElementById("SelectValue");
+            SelectValue.innerHTML = price;
+
+        }
+
+        function updateTextInput(val){
+            document.getElementById('rangevalue').textContent = val;
+        }
+        </script>
+
+
+      <script>
+        $('.carousel').carousel({
+          interval: 3000,
+          keyboard: true,
+          pause: 'hover',
+          wrap: true
+        });
+
+        $('#slider4').on('slide.bs.carousel', function () {
+          console.log('SLIDE!');
+        });
+
+        $('#slider4').on('slid.bs.carousel', function () {
+          console.log('SLID!');
+        });
+
+        </script>
+
+        <script>
+            var te = document.querySelector("#owner");
+
+            te.addEventListener('mouseover', function(){
+                te.style.color = "red";
+            })
+
+            te.addEventListener('mouseout', function(){
+                te.style.color = "black";
+            })
+
+
+        </script>
+
+        {% endblock %}
+
+</body>
+</html>
