@@ -122,7 +122,7 @@
                             <div class="card-image">
 
 
-                                <div id="slider{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                                <div id="slider{{ forloop.counter }}" class="carousel slide">
                                     <ol class="carousel-indicators">
                                         <li class="active" data-target="#slider{{ forloop.counter }}" data-slide-to="0"></li>
                                         <li data-target="#slider{{ forloop.counter }}" data-slide-to="1"></li>
@@ -248,20 +248,8 @@
 
         
       <script>
-        $('.carousel').carousel({
-          interval: 3000,
-          keyboard: true,
-          pause: 'hover',
-          wrap: true
-        });
+        $('.carousel').carousel('pause');
 
-        $('#slider4').on('slide.bs.carousel', function () {
-          console.log('SLIDE!');
-        });
-
-        $('#slider4').on('slid.bs.carousel', function () {
-          console.log('SLID!');
-        });
 
         </script>
 

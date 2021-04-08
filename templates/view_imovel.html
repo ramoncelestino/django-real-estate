@@ -15,12 +15,21 @@
         </div>
         <div class="container">
           <div class="row mb-5 pb-5 pt-5">
-              <div id="overlay-item" class="col-md-8 mb-2">
-                <h1 class="display-4 text-center">{{imovel.nome}}</h1>
+              <div id="overlay-item" class="col-md-8 pl-4 mb-2">
+                <h1 class="display-4 text-center pb-4">{{imovel.nome}}</h1>
+                <spam class="px-4"><i class="fas fa-ruler text-info fa-lg pr-2"></i>{{imovel.sqft}} m²</spam>
+                <spam class="px-4"><i class="fas fa-bed text-info fa-lg pr-2"></i>{{imovel.quartos}} Quartos</spam>
+                <spam class="px-4"><i class="fas fa-bath text-info fa-lg pr-2"></i>{{imovel.banheiros}} Banheiros</spam>
+                <spam class="px-4"><i class="fas fa-ruler text-info fa-lg pr-2"></i>{{imovel.sqft}} m²</spam>
+                <p class="pt-4">Sobre o Imóvel: {{imovel.description}}</p>
+                <p>Para mais informações: </p>
+                <p>LV Imóveis | (83) 98888-8888 ou (83) 3333-3333 Leonardo Vieira </p>
+                <p>https://www.leonardoteste.com.br</p>
+                 
 
               </div>
               <div id="overlay-item" class="col-md-3 mb-2">
-                <h3 class="display-4 text-center">Contato</h1>
+                <h3 class="display-4 text-center">Contato</h3>
                   <form method="GET">
                     <div class="form-group mt-4">
                       <input type="text" class="form-control" placeholder="Nome">
@@ -30,8 +39,12 @@
                       <input type="text" class="form-control" placeholder="E-mail">
                       
                     </div>
-                      <textarea class="form-control" placeholder="Mensagem">
-                      
+                    <div class="form-group">
+                      <textarea class="form-control" rows="8" placeholder="Mensagem"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="form-control btn btn-info">
+                    </div>
                   </form>
 
               </div>
