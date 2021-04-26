@@ -9,6 +9,7 @@ class Imovel(models.Model):
     description  = models.TextField()
     tipo_imovel  = models.ManyToManyField(TipoImovel, null=True, blank=True)
     aluguel_compra = models.ForeignKey(AluguelCompra, on_delete=models.DO_NOTHING, null=True, blank=True)
+    data_cadastro = models.DateTimeField()
     rua          = models.CharField(max_length=40, default=False, null=True, blank=True)
     cep          = models.CharField(max_length=40, default=False, null=True, blank=True)
     bairro       = models.ForeignKey(Bairro, on_delete=models.DO_NOTHING, null=True, blank=True)

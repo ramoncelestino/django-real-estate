@@ -15,7 +15,7 @@ body {
   background-repeat: no-repeat;
   background-size: fixed/cover;
   position: relative;
-  min-height: 500px;
+  min-height: 400px;
   color: #fff;
   border-bottom: 1px #eee solid;
   padding-top: 6rem;
@@ -30,6 +30,8 @@ body {
   color: #fff;
   border-bottom: 1px #eee solid;
   padding-top: 6rem;
+  display: flex;
+  align-items: center;
 }
 
 #page-header .home-search {
@@ -52,21 +54,21 @@ body {
   height: 100%;
   padding: 20px 0;
   margin: auto;
-  margin-top: 150px;
-  margin-bottom: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
 }
 
-.transparency-container {
+.show-cards {
+}
+
+.transparency-container-2 {
   background-color: rgba(52, 58, 64, 0.9);
-  width: 80%;
+  width: 100%;
   height: 100%;
   padding: 20px 0;
   margin: auto;
-  margin-bottom: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -88,10 +90,19 @@ body {
 
 #team {
   background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #empresa {
   background-color: #444;
+}
+
+.wrapp {
+  margin-top: 30px;
+  justify-content: center;
+  text-align: center;
 }
 
 hr {
@@ -129,6 +140,20 @@ hr {
 
 .card-link {
   position: relative;
+}
+
+.card {
+  margin-bottom: 40px;
+}
+
+.card:hover {
+  border: 1px solid rgb(36, 150, 243);
+  box-shadow: 8px 8px 8px 8px rgba(32, 109, 172, 0.39);
+  transform: scale(1.06);
+  transition: 0.3s;
+}
+
+.card-body {
 }
 
 #image-owner {

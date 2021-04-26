@@ -6,119 +6,107 @@
         <section id="page-header">
             <div class="container">
                 <div class="row">
-                    <div class="transparency-container">
-                        <div class="container">
-                            <h1 class="display-4 text-center">Pesquise o seu futuro imóvel</h1>
-                            <form method="get" action="/search_imoveis/">
-                                <div class="form-row">
-                                    <div class="col-md-4 col-sm-6 mb-3">
-                                        <label class="sr-only">Keywords</label>
-                                        <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 mb-3">
-                                        <div class="select">
-                                            <label class="sr-only" for="preco">Faixas de Preço</label>
-                                            <select class="form-control" name="preco" id="preco">
-                                                <option value="">Faixa de Preço</option>
-                                                {% for faixa in faixas_preco %}
-                                                <option value="{{faixa}}">Até R${{faixa}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 mb-3">
-                                        <div class="select">
-                                            <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
-                                            <select class="form-control" name="modelo" id="aluga_compra">
-                                                <option value="">Aluguel ou Compra</option>
-                                                {% for modelo in modelos %}
-                                                <option value="{{modelo.nome}}">{{modelo.nome}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                               
-                                    <div class="col-md-4 col-sm-6 mb-3">
-                                        <div class="select">
-                                            <label class="sr-only" for="tipo">Tipo Imóvel</label>
-                                            <select class="form-control" name="tipo" id="tipo">
-                                                <option value="">Selecione o Tipo</option>
-                                                {% for tipo in tipos %}
-                                                <option value="{{tipo.nome}}">{{tipo.nome}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6  mb-3">
-                                        <div class="select">
-                                            <label class="sr-only" for="bairro">Selecione o Bairro</label>
-                                            <select class="form-control" name="bairro" id="bairro">
-                                                <option value="">Selecione o Bairro</option>
-                                                {% for bairro in bairros %}
-                                                <option value="{{bairro.nome}}">{{bairro.nome}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 mb-3">
-                                        <div class="select">
-                                            <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
-                                            <select class="form-control" name="modelo" id="aluga_compra">
-                                                <option value="">Selecione o Modelo</option>
-                                                {% for modelo in modelos %}
-                                                <option value="{{modelo.nome}}">{{modelo.nome}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" onclick="getBairro();" class="btn btn-info form-control">Buscar</button>
-                            </form>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>
         <div class="container">
         <div class="row mb-2">
+            
             <div class="col-md">
                 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                     <h1 id="owner" class="display-4 text-white">Real Estate Project</h1>
                     <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
                 </div>
 
-                <div class="row row-cols-1 row-cols-md-2 mb-3">
-                    <!--<div class="col-md-4">
-                        <div class="search-container">
-                            <h1 class="display-4 text-center text-dark">Pesquisar</h1>
-                            <form method="GET" action="">
+                <div class="row">
+                    <div class=col-md-4>
+                    <div class="transparency-container-2">
+                        <div class="container">
+                            <h1 class="display-4 text-center">Pesquise o seu futuro imóvel</h1>
+                            <form method="get" action="/search_imoveis/">
                                 <div class="form-group">
-                                    <div class="select py-2">
-                                        <label class="sr-only" for="preco">Faixas de Preço</label>
-                                        <select class="form-control" name="preco" id="preco">
-                                            <option value="">Faixa de Preço</option>
-                                            {% for faixa in faixas_preco %}
-                                            <option value="{{faixa}}">Até R${{faixa}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="select py-2">
-                                        <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
-                                        <select class="form-control" name="modelo" id="aluga_compra">
-                                            <option value="">Aluguel ou Compra</option>
-                                            {% for modelo in modelos %}
-                                            <option value="{{modelo.nome}}">{{modelo.nome}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
+                                <select class="form-control mb-2" name="order" id="order">
+                                    <option value="">Order by:</option>
+                                    {% for order_type in order_types %}
+                                    <option value="{{order_type}}">{{order_type}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                                
+                                <div class="form-group">
+                                <select class="form-control mb-2" name="updown" id="crescente">
+                                    <option value="">Range:</option>
+                                    <option value="">Crescente</option>
+                                    <option value="-">decrescente</option>
+            
+                                </select>
+                            </div>
+                                <div class="form-group">
+                                    
+                                    <label class="sr-only">Keywords</label>
+                                    <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
                                 </div>
-                            </form>
 
+                                <div class="form-group">
+                                    <label class="sr-only" for="preco">Faixas de Preço</label>
+                                    <select class="form-control" name="preco" id="preco">
+                                        <option value="">Faixa de Preço</option>
+                                        {% for faixa in faixas_preco %}
+                                        <option value="{{faixa}}">Até R${{faixa}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
+                                    <select class="form-control" name="modelo" id="aluga_compra">
+                                        <option value="">Aluguel ou Compra</option>
+                                        {% for modelo in modelos %}
+                                        <option value="{{modelo.nome}}">{{modelo.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="sr-only" for="tipo">Tipo Imóvel</label>
+                                    <select class="form-control" name="tipo" id="tipo">
+                                        <option value="">Selecione o Tipo</option>
+                                        {% for tipo in tipos %}
+                                        <option value="{{tipo.nome}}">{{tipo.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="bairro">Selecione o Bairro</label>
+                                    <select class="form-control" name="bairro" id="bairro">
+                                        <option value="">Selecione o Bairro</option>
+                                        {% for bairro in bairros %}
+                                        <option value="{{bairro.nome}}">{{bairro.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="aluga_compra">Alugar ou Comprar</label>
+                                    <select class="form-control" name="modelo" id="aluga_compra">
+                                        <option value="">Selecione o Modelo</option>
+                                        {% for modelo in modelos %}
+                                        <option value="{{modelo.nome}}">{{modelo.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type="submit" onclick="getBairro();" class="btn btn-info form-control">Buscar</button>
+                            </form>
                         </div>
-                    </div>-->
+                    </div>
+                </div>
+                <div class=col-md-8>
+
+                <div class="show-cards">
+                    <div class="row">
                     {% for imovel in listings %}
-                    <div class="col-md-4">
-                        <div class="card shadow-sm mb-4">
+                    <div class="col-md-6">
+                        <a href="{% url 'view_imovel' imovel.id %}">
+                        <div class="card shadow-sm">
                             <div class="card-image">
 
 
@@ -214,17 +202,19 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <a class="card-link w-100 btn btn-lg btn-outline-info" href="{% url 'view_imovel' imovel.id %}">Ver Detalhes</a>
                             </div>
                         </div>
+                    </a>
                     </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    {% include 'apresentacao.html' %}
 
         <script>
         function getBairro()

@@ -8,7 +8,7 @@ from .form import ImovelForm
 # Create your views here.
 
 def index(request):
-    queryset_list = Imovel.objects.order_by('-price')
+    queryset_list = Imovel.objects.order_by('-data_cadastro')[:3]
 
     tipos = TipoImovel.objects.all()
     bairros = Bairro.objects.all()
@@ -33,6 +33,7 @@ def search_imoveis(request):
     bairros = Bairro.objects.all()
     modelos = AluguelCompra.objects.all()
     faixas_preco = ['1000', '5000', '10000']
+    updown = ""
 
     if 'bairro' in request.GET:
         bairro = request.GET['bairro']
@@ -55,6 +56,16 @@ def search_imoveis(request):
             queryset_list = queryset_list.filter(aluguel_compra__nome__icontains=modelo)
 
 
+    if 'updown' in request.GET:
+        updown = request.GET['updown']
+
+    if 'order' in request.GET:
+        order = request.GET['order']
+        
+        if order:
+            queryset_list = queryset_list.order_by(updown + order)
+
+    order_types = ['name', 'price', 'date']
 
     context = {
         'bairros': bairros,
@@ -62,6 +73,7 @@ def search_imoveis(request):
         'tipos' : tipos,
         'modelos': modelos,
         'listings': queryset_list,
+        'order_types': order_types,
         'values': request.GET
     }
 
@@ -69,7 +81,7 @@ def search_imoveis(request):
 
 def lancamentos(request):
 
-    list_imoveis = Imovel.objects.all()
+    list_imoveis = Bairro.objects.all()[:2]
 
     context = {
         'list_imoveis': list_imoveis
