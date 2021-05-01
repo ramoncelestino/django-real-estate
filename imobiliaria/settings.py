@@ -21,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR_NEW = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -44,11 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #own apps
-    'estados',
-    'cidades',
-    'bairros',
-    'aluguelcompra',
+    # own apps
     'tipoimoveis',
     'imoveis',
 
@@ -90,8 +85,13 @@ WSGI_APPLICATION = 'imobiliaria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'realestate',
+        'USER': 'postgres',
+        'PASSWORD': config('DATABASE'),
+        'HOST': 'localhost',
+        'PORT': '5432'
+
     }
 }
 

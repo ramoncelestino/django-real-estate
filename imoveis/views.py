@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from .models import Imovel
-from bairros.models import Bairro
+from .models import Imovel, Bairro, AluguelCompra
 from tipoimoveis.models import TipoImovel
-from aluguelcompra.models import AluguelCompra
 from .form import ImovelForm
 # Create your views here.
+
 
 def index(request):
     queryset_list = Imovel.objects.order_by('-data_cadastro')[:3]
@@ -26,6 +25,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+
 def search_imoveis(request):
     queryset_list = Imovel.objects.order_by('-price')
 
@@ -38,7 +38,8 @@ def search_imoveis(request):
     if 'bairro' in request.GET:
         bairro = request.GET['bairro']
         if bairro:
-            queryset_list = queryset_list.filter(bairro__nome__icontains=bairro)
+            queryset_list = queryset_list.filter(
+                bairro__nome__icontains=bairro)
 
     if 'preco' in request.GET:
         preco = request.GET['preco']
@@ -48,20 +49,21 @@ def search_imoveis(request):
     if 'tipo' in request.GET:
         tipo = request.GET['tipo']
         if tipo:
-            queryset_list = queryset_list.filter(tipo_imovel__nome__icontains=tipo)
+            queryset_list = queryset_list.filter(
+                tipo_imovel__nome__icontains=tipo)
 
     if 'modelo' in request.GET:
         modelo = request.GET['modelo']
         if modelo:
-            queryset_list = queryset_list.filter(aluguel_compra__nome__icontains=modelo)
-
+            queryset_list = queryset_list.filter(
+                aluguel_compra__nome__icontains=modelo)
 
     if 'updown' in request.GET:
         updown = request.GET['updown']
 
     if 'order' in request.GET:
         order = request.GET['order']
-        
+
         if order:
             queryset_list = queryset_list.order_by(updown + order)
 
@@ -70,7 +72,7 @@ def search_imoveis(request):
     context = {
         'bairros': bairros,
         'faixas_preco': faixas_preco,
-        'tipos' : tipos,
+        'tipos': tipos,
         'modelos': modelos,
         'listings': queryset_list,
         'order_types': order_types,
@@ -78,6 +80,7 @@ def search_imoveis(request):
     }
 
     return render(request, 'search_imoveis.html', context)
+
 
 def lancamentos(request):
 
@@ -88,6 +91,7 @@ def lancamentos(request):
     }
 
     return render(request, 'lancamentos.html', context)
+
 
 def create_imovel(request):
 
@@ -108,22 +112,26 @@ def view_imovel(request, pk):
 
     context = {'imovel': imovel}
 
-    return render(request,'view_imovel.html', context)
+    return render(request, 'view_imovel.html', context)
 
 
 def view_apresentacao(request):
     return render(request, 'apresentacao.html', {})
 
+
 class ImovelListView(ListView):
     queryset = Imovel.objects.all()
+
 
 def delete_imovel(request, pk):
     Imovel.objects.get(id=pk).delete()
 
     return redirect('imoveis')
 
+
 def update_imovel(request, pk):
     pass
+
 
 def login(request):
     return render(request, 'login.html', {})
