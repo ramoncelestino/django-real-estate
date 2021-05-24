@@ -110,7 +110,13 @@ def create_imovel(request):
 def view_imovel(request, pk):
     imovel = Imovel.objects.get(id=pk)
 
-    context = {'imovel': imovel}
+    site = {'title': 'LV Imobiliaria',
+            'owner': 'Leonardo Vieire',
+            'phone': '(83) 99998888',
+            'email': 'leonardovieira@gmail.com'}
+
+    context = {'imovel': imovel,
+               'site': site}
 
     return render(request, 'view_imovel.html', context)
 
